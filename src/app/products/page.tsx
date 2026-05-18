@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { categories, getProductsByCategory } from "@/data/products";
 
 export default async function ProductsPage({
@@ -16,24 +16,24 @@ export default async function ProductsPage({
     return (
         <main>
             <section className="border-b border-stone-200 bg-white">
-                <div className="mx-auto max-w-7xl px-5 py-12">
+                <div className="mx-auto max-w-7xl px-5 py-14">
                     <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
                         Product catalog
                     </p>
-                    <div className="mt-3 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                    <div className="mt-3 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                         <div>
-                            <h1 className="text-4xl font-semibold text-neutral-950 md:text-5xl">
-                                Export products by category
+                            <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-neutral-950 md:text-6xl">
+                                Products ready for serious sourcing conversations.
                             </h1>
-                            <p className="mt-4 max-w-2xl leading-7 text-neutral-600">
-                                Browse current inquiry categories. MOQ, packing, and documentation can be confirmed by email after you send a requirement.
+                            <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
+                                Review available categories, MOQ guidance, origin, and applications before submitting a requirement for pricing and documentation follow-up.
                             </p>
                         </div>
                         <Link
-                            href="/contact"
+                            href="/inquiry"
                             className="inline-flex h-12 items-center justify-center rounded-lg bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800"
                         >
-                            Send Inquiry
+                            Submit Requirement
                         </Link>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ export default async function ProductsPage({
                             : "border-stone-300 bg-white text-neutral-700 hover:border-neutral-950"
                             }`}
                     >
-                        All
+                        All Products
                     </Link>
                     {categories.map((item) => (
                         <Link
@@ -107,10 +107,10 @@ export default async function ProductsPage({
                                         Details
                                     </Link>
                                     <Link
-                                        href={`/contact?product=${product.id}`}
+                                        href={`/inquiry?product=${product.id}`}
                                         className="inline-flex h-11 flex-1 items-center justify-center rounded-lg bg-neutral-950 px-4 text-sm font-semibold text-white hover:bg-neutral-800"
                                     >
-                                        Quote
+                                        Inquiry
                                     </Link>
                                 </div>
                             </div>

@@ -1,6 +1,21 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { categories, products } from "@/data/products";
+
+const tradePillars = [
+  {
+    title: "Buyer-first communication",
+    text: "Requirements are captured clearly so the first follow-up can focus on quantity, specification, packing, and destination.",
+  },
+  {
+    title: "Export-ready categories",
+    text: "Agriculture, chemicals, marble, and granite are presented with MOQ, origin, use cases, and practical sourcing notes.",
+  },
+  {
+    title: "Email-led follow-up",
+    text: "The current setup keeps inquiries in the client inbox, making domestic and international buyer conversations easy to continue.",
+  },
+];
 
 export default function Home() {
   const featuredProducts = products.slice(0, 6);
@@ -8,54 +23,46 @@ export default function Home() {
   return (
     <main>
       <section className="border-b border-stone-200 bg-white">
-        <div className="mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl items-center gap-10 px-5 py-10 md:grid-cols-[1fr_0.85fr]">
+        <div className="mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl items-center gap-10 px-5 py-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="max-w-3xl space-y-7">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700">
-              Indian export sourcing partner
+              Indian import export partner
             </p>
             <h1 className="text-5xl font-semibold leading-[1.02] text-neutral-950 md:text-7xl">
-              Reliable supply for global buyers.
+              Source Indian products with confidence.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-neutral-600">
-              Pathik Impex helps importers source agriculture, chemicals, marble, and granite products from India with clear communication, export documentation, and practical shipment coordination.
+              Pathik Impex helps domestic and international buyers source agriculture, chemicals, marble, and granite products from India with professional inquiry handling and export-focused coordination.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/products"
+                href="/categories"
                 className="inline-flex h-12 items-center justify-center rounded-lg bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800"
               >
-                View Products
+                Explore Categories
               </Link>
               <Link
-                href="/contact"
+                href="/inquiry"
                 className="inline-flex h-12 items-center justify-center rounded-lg border border-stone-300 px-6 font-semibold text-neutral-950 hover:bg-stone-100"
               >
-                Request Quote
+                Submit Requirement
               </Link>
             </div>
           </div>
 
-          <div className="grid gap-3">
+          <div className="grid gap-4">
             <Image
               src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1200&q=80"
-              alt="Export cargo containers prepared for shipment"
+              alt="Shipping containers for international trade"
               width={1200}
               height={900}
-              className="aspect-[4/3] h-full w-full rounded-lg object-cover"
+              priority
+              className="aspect-[4/3] w-full rounded-lg object-cover"
             />
             <div className="grid grid-cols-3 gap-3 text-center">
-              <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
-                <p className="text-2xl font-semibold">3</p>
-                <p className="mt-1 text-xs font-medium text-neutral-600">Core categories</p>
-              </div>
-              <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
-                <p className="text-2xl font-semibold">9</p>
-                <p className="mt-1 text-xs font-medium text-neutral-600">Listed products</p>
-              </div>
-              <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
-                <p className="text-2xl font-semibold">Email</p>
-                <p className="mt-1 text-xs font-medium text-neutral-600">Fast follow-up</p>
-              </div>
+              <Stat value="3" label="Core categories" />
+              <Stat value="9" label="Products listed" />
+              <Stat value="Email" label="Buyer follow-up" />
             </div>
           </div>
         </div>
@@ -67,10 +74,12 @@ export default function Home() {
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
               Categories
             </p>
-            <h2 className="mt-2 text-3xl font-semibold text-neutral-950">Source by business need</h2>
+            <h2 className="mt-2 text-3xl font-semibold text-neutral-950">
+              Built for trade conversations
+            </h2>
           </div>
           <Link href="/products" className="font-semibold text-neutral-950 underline-offset-4 hover:underline">
-            Browse full catalog
+            View all products
           </Link>
         </div>
 
@@ -83,14 +92,14 @@ export default function Home() {
             >
               <Image
                 src={category.image}
-                alt={`${category.name} category`}
+                alt={`${category.name} exports`}
                 width={1200}
                 height={720}
                 className="aspect-[5/3] w-full object-cover transition duration-300 group-hover:scale-[1.03]"
               />
-              <div className="space-y-2 p-5">
+              <div className="space-y-3 p-5">
                 <h3 className="text-xl font-semibold text-neutral-950">{category.name}</h3>
-                <p className="leading-6 text-neutral-600">{category.description}</p>
+                <p className="leading-6 text-neutral-600">{category.buyerValue}</p>
               </div>
             </Link>
           ))}
@@ -98,61 +107,70 @@ export default function Home() {
       </section>
 
       <section className="border-y border-stone-200 bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-16">
-          <div className="mb-8">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-16 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
-              Featured products
+              Sourcing discipline
             </p>
-            <h2 className="mt-2 text-3xl font-semibold text-neutral-950">Common export inquiries</h2>
+            <h2 className="mt-2 text-3xl font-semibold text-neutral-950">
+              Professional enough for first contact
+            </h2>
+            <p className="mt-5 leading-7 text-neutral-600">
+              Buyers should immediately understand what the company supplies, what information is needed to quote, and how the conversation will continue.
+            </p>
           </div>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {featuredProducts.map((product) => (
-              <Link
-                key={product.id}
-                href={`/products/${product.id}`}
-                className="group overflow-hidden rounded-lg border border-stone-200 bg-stone-50"
-              >
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={1200}
-                  height={900}
-                  className="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                />
-                <div className="space-y-3 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-700">
-                    {product.category}
-                  </p>
-                  <h3 className="text-xl font-semibold">{product.name}</h3>
-                  <p className="line-clamp-2 leading-6 text-neutral-600">{product.summary}</p>
-                </div>
-              </Link>
+          <div className="grid gap-4 md:grid-cols-3">
+            {tradePillars.map((pillar) => (
+              <div key={pillar.title} className="rounded-lg border border-stone-200 bg-stone-50 p-5">
+                <h3 className="font-semibold text-neutral-950">{pillar.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-neutral-600">{pillar.text}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-16 md:grid-cols-[0.8fr_1.2fr]">
-        <div>
+      <section className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mb-8">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
-            How inquiries work
+            Product snapshot
           </p>
-          <h2 className="mt-2 text-3xl font-semibold text-neutral-950">Simple now, scalable later</h2>
+          <h2 className="mt-2 text-3xl font-semibold text-neutral-950">Frequently requested products</h2>
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            ["1", "Buyer sends product requirement."],
-            ["2", "Inquiry reaches the sales inbox through Brevo."],
-            ["3", "Follow-up continues directly by email."],
-          ].map(([step, text]) => (
-            <div key={step} className="rounded-lg border border-stone-200 bg-white p-5">
-              <p className="text-sm font-semibold text-emerald-700">Step {step}</p>
-              <p className="mt-3 leading-6 text-neutral-700">{text}</p>
-            </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          {featuredProducts.map((product) => (
+            <Link
+              key={product.id}
+              href={`/products/${product.id}`}
+              className="group overflow-hidden rounded-lg border border-stone-200 bg-white"
+            >
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={1200}
+                height={900}
+                className="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+              />
+              <div className="space-y-3 p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-700">
+                  {product.category}
+                </p>
+                <h3 className="text-xl font-semibold text-neutral-950">{product.name}</h3>
+                <p className="leading-6 text-neutral-600">{product.summary}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
     </main>
+  );
+}
+
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+      <p className="text-2xl font-semibold text-neutral-950">{value}</p>
+      <p className="mt-1 text-xs font-medium text-neutral-600">{label}</p>
+    </div>
   );
 }

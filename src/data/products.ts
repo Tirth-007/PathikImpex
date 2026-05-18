@@ -1,5 +1,14 @@
 export type ProductCategory = "Agriculture" | "Chemicals" | "Marble & Granite";
 
+export type Category = {
+  name: ProductCategory;
+  slug: string;
+  description: string;
+  buyerValue: string;
+  image: string;
+  products: string[];
+};
+
 export type Product = {
   id: string;
   name: string;
@@ -13,28 +22,36 @@ export type Product = {
   image: string;
 };
 
-export const categories: {
-  name: ProductCategory;
-  description: string;
-  image: string;
-}[] = [
+export const categories: Category[] = [
   {
     name: "Agriculture",
+    slug: "agriculture",
     description: "Export-ready grains, spices, and farm commodities with practical MOQ options.",
+    buyerValue:
+      "Built for importers, wholesalers, and private-label buyers who need consistent Indian farm supply.",
     image:
       "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    products: ["Basmati Rice", "Organic Turmeric", "Cumin Seeds"],
   },
   {
     name: "Chemicals",
+    slug: "chemicals",
     description: "Industrial materials sourced for manufacturing, cleaning, and processing needs.",
+    buyerValue:
+      "Structured for B2B buyers who need documentation-led sourcing and compliant shipment coordination.",
     image:
       "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1200&q=80",
+    products: ["Soda Ash Light", "Caustic Soda Flakes", "Industrial Salt"],
   },
   {
     name: "Marble & Granite",
+    slug: "marble-granite",
     description: "Natural Indian stone for construction, interiors, counters, and projects.",
+    buyerValue:
+      "Prepared for contractors, distributors, and project buyers comparing finishes, sizes, and container loads.",
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+    products: ["Granite Slabs", "Marble Tiles", "Sandstone Pavers"],
   },
 ];
 
@@ -177,4 +194,8 @@ export function getProductsByCategory(category?: string) {
   }
 
   return products.filter((product) => product.category === category);
+}
+
+export function getCategoryBySlug(slug: string) {
+  return categories.find((category) => category.slug === slug);
 }

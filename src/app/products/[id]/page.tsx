@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { getProductById } from "@/data/products";
 
 export default async function ProductDetail({
@@ -23,7 +23,7 @@ export default async function ProductDetail({
   return (
     <main>
       <section className="border-b border-stone-200 bg-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 md:grid-cols-[0.9fr_1.1fr]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 lg:grid-cols-[0.9fr_1.1fr]">
           <Image
             src={product.image}
             alt={product.name}
@@ -42,18 +42,12 @@ export default async function ProductDetail({
               <p className="mt-5 text-lg leading-8 text-neutral-600">{product.summary}</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
-                <p className="text-sm font-semibold text-neutral-950">MOQ</p>
-                <p className="mt-1 text-neutral-600">{product.moq}</p>
-              </div>
-              <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
-                <p className="text-sm font-semibold text-neutral-950">Origin</p>
-                <p className="mt-1 text-neutral-600">{product.origin}</p>
-              </div>
+              <Info label="MOQ" value={product.moq} />
+              <Info label="Origin" value={product.origin} />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link
-                href={`/contact?product=${product.id}`}
+                href={`/inquiry?product=${product.id}`}
                 className="inline-flex h-12 items-center justify-center rounded-lg bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800"
               >
                 Request Quote
@@ -69,33 +63,43 @@ export default async function ProductDetail({
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-16 md:grid-cols-[1fr_1fr]">
+      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-16 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
-            Product note
+            Buyer note
           </p>
-          <h2 className="mt-2 text-3xl font-semibold text-neutral-950">What buyers can expect</h2>
+          <h2 className="mt-2 text-3xl font-semibold text-neutral-950">
+            What to confirm before quotation
+          </h2>
           <p className="mt-5 leading-7 text-neutral-600">{product.details}</p>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
-          <div className="rounded-lg border border-stone-200 bg-white p-5">
-            <h3 className="font-semibold text-neutral-950">Applications</h3>
-            <ul className="mt-4 space-y-3 text-neutral-600">
-              {product.applications.map((item) => (
-                <li key={item}>- {item}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-lg border border-stone-200 bg-white p-5">
-            <h3 className="font-semibold text-neutral-950">Specifications</h3>
-            <ul className="mt-4 space-y-3 text-neutral-600">
-              {product.specifications.map((item) => (
-                <li key={item}>- {item}</li>
-              ))}
-            </ul>
-          </div>
+          <DetailList title="Applications" items={product.applications} />
+          <DetailList title="Specifications" items={product.specifications} />
         </div>
       </section>
     </main>
+  );
+}
+
+function Info({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+      <p className="text-sm font-semibold text-neutral-950">{label}</p>
+      <p className="mt-1 text-neutral-600">{value}</p>
+    </div>
+  );
+}
+
+function DetailList({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="rounded-lg border border-stone-200 bg-white p-5">
+      <h3 className="font-semibold text-neutral-950">{title}</h3>
+      <ul className="mt-4 space-y-3 text-neutral-600">
+        {items.map((item) => (
+          <li key={item}>- {item}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
