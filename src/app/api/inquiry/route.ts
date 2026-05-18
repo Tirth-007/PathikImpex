@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
+import { getProductById } from "@/data/products";
 
 type InquiryPayload = {
   name?: string;
+  company?: string;
   email?: string;
   country?: string;
   message?: string;
@@ -20,8 +22,8 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
-    const body = (await req.json()) as InquiryPayload;
-    const { name, email, country, message, productId, productName } = body;
+    const body = await readInquiryPayload(req);
+    const { name, company, email, country, message, productId, productName } = body;
 
     if (!name || !email || !country || !message) {
       return NextResponse.json(
@@ -49,11 +51,17 @@ export async function POST(req: Request) {
       timeStyle: "short",
     });
 
-    const subject = `New inquiry from ${name}`;
-    const productLabel = productName || productId || "General inquiry";
+    const buyerName = company ? `${name} (${company})` : name;
+    const productLabel =
+      productName ||
+      (productId ? getProductById(productId)?.name : null) ||
+      productId ||
+      "General inquiry";
+    const subject = `New inquiry from ${buyerName}`;
     const htmlContent = `
       <h2>New website inquiry</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      ${company ? `<p><strong>Company:</strong> ${escapeHtml(company)}</p>` : ""}
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       <p><strong>Country:</strong> ${escapeHtml(country)}</p>
       <p><strong>Product:</strong> ${escapeHtml(productLabel)}</p>
@@ -66,6 +74,7 @@ export async function POST(req: Request) {
       "New website inquiry",
       "",
       `Name: ${name}`,
+      company ? `Company: ${company}` : "",
       `Email: ${email}`,
       `Country: ${country}`,
       `Product: ${productLabel}`,
@@ -89,7 +98,7 @@ export async function POST(req: Request) {
         to: [{ email: toEmail }],
         replyTo: {
           email,
-          name,
+          name: buyerName,
         },
         subject,
         htmlContent,
@@ -118,6 +127,32 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
+}
+
+async function readInquiryPayload(req: Request): Promise<InquiryPayload> {
+  const contentType = req.headers.get("content-type") || "";
+
+  if (contentType.includes("application/json")) {
+    return req.json();
+  }
+
+  const formData = await req.formData();
+
+  return {
+    name: getFormValue(formData, "name"),
+    company: getFormValue(formData, "company"),
+    email: getFormValue(formData, "email"),
+    country: getFormValue(formData, "country"),
+    message: getFormValue(formData, "message"),
+    productId: getFormValue(formData, "productId") || null,
+    productName: getFormValue(formData, "productName") || null,
+  };
+}
+
+function getFormValue(formData: FormData, key: string) {
+  const value = formData.get(key);
+
+  return typeof value === "string" ? value.trim() : "";
 }
 
 function escapeHtml(value: string) {

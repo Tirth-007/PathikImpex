@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { categories, getCategoryBySlug, products } from "@/data/products";
@@ -19,33 +19,23 @@ function InquiryForm() {
     const categorySlug = searchParams.get("category") || "";
     const category = getCategoryBySlug(categorySlug);
 
-    const [selectedProductId, setSelectedProductId] = useState(productId);
-    const [form, setForm] = useState({
-        name: "",
-        company: "",
-        email: "",
-        country: "",
-        message: category ? `Interested in ${category.name}. ` : "",
-    });
+    const formRef = useRef<HTMLFormElement>(null);
     const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-
-    const selectedProduct = products.find((product) => product.id === selectedProductId);
-
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus("sending");
 
+        const formData = new FormData(e.currentTarget);
+        const selectedProductId = String(formData.get("productId") || "");
+        const selectedProduct = products.find((product) => product.id === selectedProductId);
+
         const payload = {
-            name: form.company ? `${form.name} (${form.company})` : form.name,
-            email: form.email,
-            country: form.country,
-            message: form.message,
+            name: String(formData.get("name") || ""),
+            company: String(formData.get("company") || ""),
+            email: String(formData.get("email") || ""),
+            country: String(formData.get("country") || ""),
+            message: String(formData.get("message") || ""),
             productId: selectedProduct?.id || null,
             productName: selectedProduct?.name || category?.name || null,
         };
@@ -71,14 +61,7 @@ function InquiryForm() {
 
             if (res.ok && data.success) {
                 setStatus("sent");
-                setForm({
-                    name: "",
-                    company: "",
-                    email: "",
-                    country: "",
-                    message: "",
-                });
-                setSelectedProductId("");
+                formRef.current?.reset();
             } else {
                 setStatus("error");
             }
@@ -137,19 +120,25 @@ function InquiryForm() {
                     />
                 </aside>
 
-                <form onSubmit={handleSubmit} className="rounded-lg border border-stone-200 bg-white p-5 md:p-7">
+                <form
+                    ref={formRef}
+                    action="/api/inquiry"
+                    method="post"
+                    onSubmit={handleSubmit}
+                    className="rounded-lg border border-stone-200 bg-white p-5 md:p-7"
+                >
                     <div className="grid gap-4 md:grid-cols-2">
-                        <Input label="Name" name="name" value={form.name} placeholder="Your name" onChange={handleChange} />
-                        <Input label="Company" name="company" value={form.company} placeholder="Company name" onChange={handleChange} />
-                        <Input label="Email" name="email" value={form.email} placeholder="name@company.com" onChange={handleChange} type="email" />
-                        <Input label="Country" name="country" value={form.country} placeholder="Destination country" onChange={handleChange} />
+                        <Input label="Name" name="name" placeholder="Your name" />
+                        <Input label="Company" name="company" placeholder="Company name" />
+                        <Input label="Email" name="email" placeholder="name@company.com" type="email" />
+                        <Input label="Country" name="country" placeholder="Destination country" />
 
                         <label className="space-y-2 md:col-span-2">
                             <span className="text-sm font-semibold text-neutral-950">Product</span>
                             <select
-                                value={selectedProductId}
+                                name="productId"
+                                defaultValue={productId}
                                 className="h-12 w-full rounded-lg border border-stone-300 bg-white px-4 outline-none focus:border-neutral-950"
-                                onChange={(event) => setSelectedProductId(event.target.value)}
                             >
                                 <option value="">General or category inquiry</option>
                                 {products.map((product) => (
@@ -165,10 +154,9 @@ function InquiryForm() {
                         <span className="text-sm font-semibold text-neutral-950">Requirement</span>
                         <textarea
                             name="message"
-                            value={form.message}
+                            defaultValue={category ? `Interested in ${category.name}. ` : ""}
                             placeholder="Quantity, packing, grade or finish, destination port, timeline, and any quality requirements"
                             className="min-h-44 w-full rounded-lg border border-stone-300 p-4 outline-none focus:border-neutral-950"
-                            onChange={handleChange}
                             required
                         />
                     </label>
@@ -186,6 +174,7 @@ function InquiryForm() {
                     )}
 
                     <button
+                        type="submit"
                         disabled={status === "sending"}
                         className="mt-5 inline-flex h-12 items-center justify-center rounded-lg bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-500"
                     >
@@ -200,16 +189,12 @@ function InquiryForm() {
 function Input({
     label,
     name,
-    value,
     placeholder,
-    onChange,
     type = "text",
 }: {
     label: string;
     name: string;
-    value: string;
     placeholder: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     type?: string;
 }) {
     return (
@@ -218,10 +203,8 @@ function Input({
             <input
                 name={name}
                 type={type}
-                value={value}
                 placeholder={placeholder}
                 className="h-12 w-full rounded-lg border border-stone-300 px-4 outline-none focus:border-neutral-950"
-                onChange={onChange}
                 required={name !== "company"}
             />
         </label>
