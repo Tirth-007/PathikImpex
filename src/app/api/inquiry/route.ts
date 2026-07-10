@@ -14,7 +14,7 @@ type InquiryPayload = {
 export async function GET() {
   return NextResponse.json(
     {
-      message: "Inquiries are handled by email. Admin storage is not enabled.",
+      message: "Inquiries are handled through Formspree. Use POST to submit the form.",
     },
     { status: 405 }
   );
@@ -32,16 +32,13 @@ export async function POST(req: Request) {
       );
     }
 
-    const apiKey = process.env.BREVO_API_KEY;
-    const toEmail = process.env.INQUIRY_TO_EMAIL;
-    const fromEmail = process.env.INQUIRY_FROM_EMAIL;
-    const fromName = process.env.INQUIRY_FROM_NAME || "Pathik Impex";
+    const formspreeEndpoint = process.env.FORMSPREE_ENDPOINT;
 
-    if (!apiKey || !toEmail || !fromEmail) {
-      console.error("Inquiry email environment variables are not configured.");
+    if (!formspreeEndpoint) {
+      console.error("FORMSPREE_ENDPOINT is not configured.");
 
       return NextResponse.json(
-        { success: false, message: "Email is not configured." },
+        { success: false, message: "Formspree is not configured." },
         { status: 500 }
       );
     }
@@ -50,68 +47,38 @@ export async function POST(req: Request) {
       dateStyle: "medium",
       timeStyle: "short",
     });
-
     const buyerName = company ? `${name} (${company})` : name;
     const productLabel =
       productName ||
       (productId ? getProductById(productId)?.name : null) ||
       productId ||
       "General inquiry";
-    const subject = `New inquiry from ${buyerName}`;
-    const htmlContent = `
-      <h2>New website inquiry</h2>
-      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-      ${company ? `<p><strong>Company:</strong> ${escapeHtml(company)}</p>` : ""}
-      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-      <p><strong>Country:</strong> ${escapeHtml(country)}</p>
-      <p><strong>Product:</strong> ${escapeHtml(productLabel)}</p>
-      <p><strong>Submitted:</strong> ${escapeHtml(submittedAt)}</p>
-      <p><strong>Requirement:</strong></p>
-      <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
-    `;
 
-    const textContent = [
-      "New website inquiry",
-      "",
-      `Name: ${name}`,
-      company ? `Company: ${company}` : "",
-      `Email: ${email}`,
-      `Country: ${country}`,
-      `Product: ${productLabel}`,
-      `Submitted: ${submittedAt}`,
-      "",
-      "Requirement:",
-      message,
-    ].join("\n");
+    const formspreeData = new FormData();
+    formspreeData.append("name", name);
+    formspreeData.append("company", company || "");
+    formspreeData.append("email", email);
+    formspreeData.append("country", country);
+    formspreeData.append("product", productLabel);
+    formspreeData.append("product_id", productId || "");
+    formspreeData.append("message", message);
+    formspreeData.append("submitted_at", submittedAt);
+    formspreeData.append("_subject", `New inquiry from ${buyerName}`);
 
-    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    const response = await fetch(formspreeEndpoint, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "api-key": apiKey,
+        Accept: "application/json",
       },
-      body: JSON.stringify({
-        sender: {
-          email: fromEmail,
-          name: fromName,
-        },
-        to: [{ email: toEmail }],
-        replyTo: {
-          email,
-          name: buyerName,
-        },
-        subject,
-        htmlContent,
-        textContent,
-      }),
+      body: formspreeData,
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("Brevo email failed:", errorText);
+      console.error("Formspree submission failed:", errorText);
 
       return NextResponse.json(
-        { success: false, message: "Email could not be sent." },
+        { success: false, message: "Formspree could not accept the inquiry." },
         { status: 502 }
       );
     }
@@ -153,13 +120,4 @@ function getFormValue(formData: FormData, key: string) {
   const value = formData.get(key);
 
   return typeof value === "string" ? value.trim() : "";
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }

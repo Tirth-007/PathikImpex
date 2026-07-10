@@ -82,7 +82,7 @@ function InquiryForm() {
                         Tell us what you need to import, export, or source.
                     </h1>
                     <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-                        Share product, destination, quantity, packing expectations, and timeline. The business receives this through Brevo and can continue the conversation by email.
+                        Share product, destination, quantity, packing expectations, and timeline. The business receives this through Formspree and can continue the conversation by email.
                     </p>
                 </div>
             </section>
@@ -169,7 +169,7 @@ function InquiryForm() {
 
                     {status === "error" && (
                         <p className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
-                            Something went wrong. Please check the email configuration and try again.
+                            Something went wrong. Please check the Formspree configuration and try again.
                         </p>
                     )}
 
