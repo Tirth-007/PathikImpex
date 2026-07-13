@@ -9,8 +9,8 @@ const trustSignals = [
 ];
 
 export default function Home() {
-  const featuredSeries = categories.slice(0, 4);
-  const featuredProducts = products.slice(0, 5);
+  const showcaseSeries = categories.slice(0, 4);
+  const featuredProducts = products.slice(0, 6);
 
   return (
     <main className="bg-[#f7f3ed]">
@@ -82,71 +82,73 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20">
-        <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
-          <div className="max-w-xl">
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#997332]">
-              Surface glimpses
+              Surface showcase
             </p>
             <h2 className="mt-4 text-4xl font-medium leading-tight text-neutral-950">
-              A glimpse of the collection, without boxing it in.
+              A collection shown like a surface should be seen.
             </h2>
             <p className="mt-5 leading-7 text-neutral-600">
-              The portfolio is shown as an open visual direction: texture, tone, series, and a direct path to ask for the finish that catches attention.
+              Each glimpse gives the product room to breathe first, then keeps the commercial conversation separate and easy to act on.
             </p>
           </div>
+        </div>
 
-          <div className="space-y-10">
-            {featuredSeries.map((category) => (
-              <Link
-                key={category.name}
-                href={`/products?category=${encodeURIComponent(category.name)}`}
-                className="group grid gap-5 md:grid-cols-[0.85fr_1.15fr] md:items-end"
-              >
+        <div className="mt-12 space-y-16">
+          {showcaseSeries.map((category, index) => (
+            <section key={category.name} className="group">
+              <div className="overflow-hidden">
+                <Image
+                  src={category.image}
+                  alt={`${category.name} quartz surface showcase`}
+                  width={1800}
+                  height={900}
+                  className="h-[52vh] min-h-[360px] w-full object-cover transition duration-700 group-hover:scale-[1.025]"
+                />
+              </div>
+              <div className="mx-auto grid max-w-7xl gap-6 px-5 pt-7 md:grid-cols-[0.75fr_1fr_auto] md:items-end">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#997332]">
-                    {category.products.length} finishes
+                    Showcase {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="mt-2 text-3xl font-medium text-neutral-950">{category.name}</h3>
-                  <p className="mt-3 leading-6 text-neutral-600">{category.description}</p>
+                  <h3 className="mt-2 text-4xl font-medium text-neutral-950">{category.name}</h3>
                 </div>
-                <div className="overflow-hidden">
-                  <Image
-                    src={category.image}
-                    alt={`${category.name} quartz surfaces`}
-                    width={1200}
-                    height={800}
-                    className="aspect-[16/7] w-full object-cover transition duration-700 group-hover:scale-[1.035]"
-                  />
-                </div>
-              </Link>
-            ))}
-          </div>
+                <p className="max-w-2xl leading-7 text-neutral-600">{category.description}</p>
+                <Link
+                  href={`/products?category=${encodeURIComponent(category.name)}`}
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-neutral-950 px-5 text-sm font-semibold text-white transition hover:bg-neutral-800"
+                >
+                  View finishes
+                </Link>
+              </div>
+            </section>
+          ))}
         </div>
       </section>
 
       <section className="bg-neutral-950 text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[1fr_1fr]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d6b46d]">
-              Buyer path
+              Finish reel
             </p>
             <h2 className="mt-4 text-4xl font-medium leading-tight">
-              See enough to decide. Ask when it matters.
+              Names to remember, details kept private.
             </h2>
           </div>
-          <div className="grid gap-3">
+          <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
             {featuredProducts.map((product) => (
               <Link
                 key={product.id}
                 href={`/inquiry?product=${product.id}`}
-                className="group flex items-center justify-between border-b border-white/15 py-4"
+                className="group border-t border-white/15 pt-4"
               >
-                <span>
-                  <span className="block text-lg font-medium">{product.name}</span>
-                  <span className="mt-1 block text-sm text-stone-400">{product.category}</span>
-                </span>
-                <span className="text-sm font-semibold text-[#d6b46d] transition group-hover:translate-x-1">
+                <span className="block text-lg font-medium">{product.name}</span>
+                <span className="mt-1 block text-sm text-stone-400">{product.category}</span>
+                <span className="mt-4 block text-sm font-semibold text-[#d6b46d]">
                   Request quote
                 </span>
               </Link>

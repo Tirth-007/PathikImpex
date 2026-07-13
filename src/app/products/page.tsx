@@ -68,7 +68,7 @@ export default async function ProductsPage({
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 pb-20">
+      <section className="pb-20">
         <div className="space-y-20">
           {visibleCategories.map((series) => {
             const seriesProducts = getProductsByCategory(series.name);
@@ -76,32 +76,32 @@ export default async function ProductsPage({
             return (
               <section
                 key={series.name}
-                className="grid gap-8 border-t border-neutral-300 pt-10 lg:grid-cols-[0.95fr_1.05fr]"
+                className="border-t border-neutral-300 pt-10"
               >
-                <div className="relative min-h-80 overflow-hidden">
+                <div className="overflow-hidden">
                   <Image
                     src={series.image}
                     alt={`${series.name} quartz finishes`}
-                    width={1200}
+                    width={1800}
                     height={900}
-                    className="h-full min-h-80 w-full object-cover"
+                    className="h-[48vh] min-h-[340px] w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/55 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                </div>
+
+                <div className="mx-auto grid max-w-7xl gap-8 px-5 pt-7 lg:grid-cols-[0.85fr_1.15fr]">
+                  <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#e8c77f]">
                       {series.products.length} finishes
                     </p>
-                    <h2 className="mt-2 text-3xl font-medium">{series.name}</h2>
+                    <h2 className="mt-2 text-4xl font-medium text-neutral-950">{series.name}</h2>
+                    <p className="mt-4 max-w-lg leading-7 text-neutral-600">{series.buyerValue}</p>
                   </div>
-                </div>
 
-                <div>
-                  <p className="max-w-2xl leading-7 text-neutral-600">{series.buyerValue}</p>
-                  <div className="mt-6 divide-y divide-neutral-200">
+                  <div className="divide-y divide-neutral-200">
                     {seriesProducts.map((product) => (
                       <div
                         key={product.id}
-                        className="grid gap-4 py-4 md:grid-cols-[1fr_auto] md:items-center"
+                        className="grid gap-4 py-5 md:grid-cols-[1fr_auto] md:items-center"
                       >
                         <div>
                           <h3 className="text-xl font-medium text-neutral-950">{product.name}</h3>
