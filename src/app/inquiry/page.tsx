@@ -79,10 +79,10 @@ function InquiryForm() {
                         Product inquiry
                     </p>
                     <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-tight text-neutral-950 md:text-6xl">
-                        Tell us what you need to import, export, or source.
+                        Tell us which quartz surface you want to source.
                     </h1>
                     <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-                        Share product, destination, quantity, packing expectations, and timeline. The business receives this through Formspree and can continue the conversation by email.
+                        Share product name, destination, quantity, slab or finish expectations, packing needs, and timeline. The business receives this through Formspree and can continue the conversation by email.
                     </p>
                 </div>
             </section>
@@ -92,10 +92,10 @@ function InquiryForm() {
                     <div className="rounded-lg border border-stone-200 bg-white p-5">
                         <h2 className="text-xl font-semibold text-neutral-950">What helps us reply faster</h2>
                         <ul className="mt-5 space-y-3 text-sm leading-6 text-neutral-600">
-                            <li>- Product name or category</li>
-                            <li>- Required quantity and expected MOQ</li>
+                            <li>- Product name or quartz series</li>
+                            <li>- Required quantity and slab expectations</li>
                             <li>- Destination country or port</li>
-                            <li>- Packing, grade, finish, or documentation needs</li>
+                            <li>- Packing, finish, processing, or documentation needs</li>
                         </ul>
                     </div>
                     <div className="rounded-lg border border-stone-200 bg-white p-5">
@@ -113,7 +113,7 @@ function InquiryForm() {
                     </div>
                     <Image
                         src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80"
-                        alt="Business team reviewing product inquiry"
+                        alt="Business team reviewing quartz product inquiry"
                         width={1000}
                         height={750}
                         className="aspect-[4/3] w-full rounded-lg object-cover"
@@ -140,7 +140,7 @@ function InquiryForm() {
                                 defaultValue={productId}
                                 className="h-12 w-full rounded-lg border border-stone-300 bg-white px-4 outline-none focus:border-neutral-950"
                             >
-                                <option value="">General or category inquiry</option>
+                                <option value="">General or series inquiry</option>
                                 {products.map((product) => (
                                     <option key={product.id} value={product.id}>
                                         {product.name} - {product.category}
@@ -155,7 +155,7 @@ function InquiryForm() {
                         <textarea
                             name="message"
                             defaultValue={category ? `Interested in ${category.name}. ` : ""}
-                            placeholder="Quantity, packing, grade or finish, destination port, timeline, and any quality requirements"
+                            placeholder="Quantity, slab size or thickness, finish, packing, destination port, timeline, and any quality requirements"
                             className="min-h-44 w-full rounded-lg border border-stone-300 p-4 outline-none focus:border-neutral-950"
                             required
                         />

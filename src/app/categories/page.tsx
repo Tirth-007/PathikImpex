@@ -8,13 +8,13 @@ export default function CategoriesPage() {
       <section className="border-b border-stone-200 bg-white">
         <div className="mx-auto max-w-7xl px-5 py-14">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
-            Trade categories
+            Quartz series
           </p>
           <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-tight text-neutral-950 md:text-6xl">
-            Product categories buyers can understand quickly.
+            Advantis Quartz series buyers can understand quickly.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-            Each category is positioned for importers, distributors, project buyers, and domestic procurement teams who need a clear starting point.
+            Each series is positioned for importers, distributors, project buyers, designers, and domestic procurement teams who need a clear starting point.
           </p>
         </div>
       </section>
@@ -28,7 +28,7 @@ export default function CategoriesPage() {
             >
               <Image
                 src={category.image}
-                alt={`${category.name} sourcing category`}
+                alt={`${category.name} quartz series`}
                 width={1200}
                 height={800}
                 className="aspect-[4/3] h-full w-full object-cover"

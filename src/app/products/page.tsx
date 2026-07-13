@@ -23,10 +23,10 @@ export default async function ProductsPage({
                     <div className="mt-3 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                         <div>
                             <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-neutral-950 md:text-6xl">
-                                Products ready for serious sourcing conversations.
+                                Advantis Quartz products ready for serious sourcing conversations.
                             </h1>
                             <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-                                Review available categories, MOQ guidance, origin, and applications before submitting a requirement for pricing and documentation follow-up.
+                                Review available series, brochure visuals, origin, and applications before submitting a requirement for pricing, slab details, packing, and documentation follow-up.
                             </p>
                         </div>
                         <Link

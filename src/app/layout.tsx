@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pathik Impex | Import Export Sourcing Partner",
+  title: "Pathik Impex | Advantis Quartz Sourcing Partner",
   description:
-    "Pathik Impex supports domestic and international buyers sourcing Indian agriculture, chemicals, marble, and granite products.",
+    "Pathik Impex supports domestic and international buyers sourcing Advantis Quartz surfaces from India.",
 };
 
 export default function RootLayout({
@@ -38,7 +38,7 @@ export default function RootLayout({
             <div>
               <p className="text-xl font-semibold">Pathik Impex</p>
               <p className="mt-3 max-w-md leading-7 text-stone-300">
-                Indian sourcing and export coordination for buyers who need clear product communication and responsive follow-up.
+                Quartz surface sourcing and export coordination for buyers who need clear product communication and responsive follow-up.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4 text-sm text-stone-300">
@@ -51,7 +51,7 @@ export default function RootLayout({
               href="/inquiry"
               className="inline-flex h-11 items-center justify-center rounded-lg bg-white px-5 text-sm font-semibold text-neutral-950 hover:bg-stone-100"
             >
-              Start Sourcing
+              Start Inquiry
             </Link>
           </div>
         </footer>

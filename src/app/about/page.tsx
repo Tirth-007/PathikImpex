@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const strengths = [
   "Clear product communication for first-time and repeat buyers",
-  "Category focus across agriculture, chemicals, marble, and granite",
-  "Inquiry details structured around quantity, packing, quality, and destination",
+  "Series-wise Advantis Quartz catalog for faster color shortlisting",
+  "Inquiry details structured around quantity, slab needs, finish, packing, and destination",
   "Email-first follow-up that is simple today and ready for CRM/database growth later",
 ];
 
@@ -18,10 +18,10 @@ export default function AboutPage() {
               About Pathik Impex
             </p>
             <h1 className="text-4xl font-semibold leading-tight text-neutral-950 md:text-6xl">
-              A practical sourcing bridge between Indian supply and global demand.
+              A practical sourcing bridge for quartz surface buyers.
             </h1>
             <p className="text-lg leading-8 text-neutral-600">
-              Pathik Impex is presented as a focused import/export partner for buyers who need a direct and professional route to Indian products. The website is designed to make the first inquiry efficient for both the buyer and the business.
+              Pathik Impex is presented as a focused import/export partner for buyers who need a direct and professional route to Advantis Quartz surfaces from India. The website is designed to make the first inquiry efficient for both the buyer and the business.
             </p>
             <Link
               href="/inquiry"
@@ -31,8 +31,8 @@ export default function AboutPage() {
             </Link>
           </div>
           <Image
-            src="https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?auto=format&fit=crop&w=1200&q=80"
-            alt="Business team discussing international sourcing"
+            src="/advantis/page-14.jpg"
+            alt="Advantis Quartz interior surface brochure visual"
             width={1200}
             height={900}
             className="aspect-[4/3] w-full rounded-lg object-cover"
@@ -46,7 +46,7 @@ export default function AboutPage() {
             Operating approach
           </p>
           <h2 className="mt-2 text-3xl font-semibold text-neutral-950">
-            Built for buyers who compare, verify, and follow up
+            Built for buyers who compare colors, verify specs, and follow up
           </h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2">

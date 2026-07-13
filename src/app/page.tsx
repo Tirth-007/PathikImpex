@@ -9,7 +9,7 @@ const tradePillars = [
   },
   {
     title: "Export-ready categories",
-    text: "Agriculture, chemicals, marble, and granite are presented with MOQ, origin, use cases, and practical sourcing notes.",
+    text: "Advantis Quartz series are presented with buyer notes, applications, origin, and product visuals from the brochure.",
   },
   {
     title: "Email-led follow-up",
@@ -26,13 +26,13 @@ export default function Home() {
         <div className="mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl items-center gap-10 px-5 py-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="max-w-3xl space-y-7">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700">
-              Indian import export partner
+              Quartz surface import export partner
             </p>
             <h1 className="text-5xl font-semibold leading-[1.02] text-neutral-950 md:text-7xl">
-              Source Indian products with confidence.
+              Source Advantis Quartz surfaces with confidence.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-neutral-600">
-              Pathik Impex helps domestic and international buyers source agriculture, chemicals, marble, and granite products from India with professional inquiry handling and export-focused coordination.
+              Pathik Impex helps domestic and international buyers review Advantis Quartz colors, compare surface series, and start professional quotation conversations for interior and project requirements.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
@@ -52,16 +52,16 @@ export default function Home() {
 
           <div className="grid gap-4">
             <Image
-              src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1200&q=80"
-              alt="Shipping containers for international trade"
+              src="/advantis/page-08.jpg"
+              alt="Advantis Quartz luxe surface brochure visual"
               width={1200}
               height={900}
               priority
               className="aspect-[4/3] w-full rounded-lg object-cover"
             />
             <div className="grid grid-cols-3 gap-3 text-center">
-              <Stat value="3" label="Core categories" />
-              <Stat value="9" label="Products listed" />
+              <Stat value={String(categories.length)} label="Quartz series" />
+              <Stat value={String(products.length)} label="Products listed" />
               <Stat value="Email" label="Buyer follow-up" />
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {categories.map((category) => (
             <Link
               key={category.name}
@@ -92,7 +92,7 @@ export default function Home() {
             >
               <Image
                 src={category.image}
-                alt={`${category.name} exports`}
+                alt={`${category.name} quartz surfaces`}
                 width={1200}
                 height={720}
                 className="aspect-[5/3] w-full object-cover transition duration-300 group-hover:scale-[1.03]"
@@ -113,10 +113,10 @@ export default function Home() {
               Sourcing discipline
             </p>
             <h2 className="mt-2 text-3xl font-semibold text-neutral-950">
-              Professional enough for first contact
+              Professional enough for surface buyers
             </h2>
             <p className="mt-5 leading-7 text-neutral-600">
-              Buyers should immediately understand what the company supplies, what information is needed to quote, and how the conversation will continue.
+              Buyers should immediately understand the surface range, shortlist colors by series, and know what information is needed for a clean quotation follow-up.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -135,7 +135,7 @@ export default function Home() {
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
             Product snapshot
           </p>
-          <h2 className="mt-2 text-3xl font-semibold text-neutral-950">Frequently requested products</h2>
+          <h2 className="mt-2 text-3xl font-semibold text-neutral-950">Featured quartz surfaces</h2>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
           {featuredProducts.map((product) => (
