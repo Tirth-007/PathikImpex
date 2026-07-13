@@ -25,7 +25,7 @@ export default function AboutPage() {
             </p>
             <Link
               href="/inquiry"
-              className="inline-flex h-12 items-center justify-center rounded-lg bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800"
             >
               Request a Private Quote
             </Link>
@@ -35,7 +35,7 @@ export default function AboutPage() {
             alt="Advantis Quartz interior surface visual"
             width={1200}
             height={900}
-            className="aspect-[4/3] w-full rounded-lg object-cover"
+            className="aspect-[4/3] w-full object-cover"
           />
         </div>
       </section>
@@ -51,7 +51,7 @@ export default function AboutPage() {
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {strengths.map((item) => (
-            <div key={item} className="rounded-lg border border-stone-200 bg-white p-5">
+            <div key={item} className="border-t border-neutral-300 pt-5">
               <p className="leading-7 text-neutral-700">{item}</p>
             </div>
           ))}
@@ -71,7 +71,7 @@ export default function AboutPage() {
 
 function Metric({ value, label }: { value: string; label: string }) {
   return (
-    <div className="rounded-lg border border-stone-200 bg-stone-50 p-6">
+    <div className="border-t border-neutral-300 pt-6">
       <p className="text-2xl font-semibold text-neutral-950">{value}</p>
       <p className="mt-2 leading-6 text-neutral-600">{label}</p>
     </div>

@@ -51,7 +51,7 @@ export default function RootLayout({
             </div>
             <Link
               href="/inquiry"
-              className="inline-flex h-11 items-center justify-center rounded-lg bg-white px-5 text-sm font-semibold text-neutral-950 hover:bg-stone-100"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-neutral-950 hover:bg-stone-100"
             >
               Request Quote
             </Link>

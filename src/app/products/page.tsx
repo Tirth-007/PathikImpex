@@ -69,25 +69,25 @@ export default async function ProductsPage({
       </section>
 
       <section className="mx-auto max-w-7xl px-5 pb-20">
-        <div className="space-y-8">
+        <div className="space-y-20">
           {visibleCategories.map((series) => {
             const seriesProducts = getProductsByCategory(series.name);
 
             return (
-              <article
+              <section
                 key={series.name}
-                className="grid overflow-hidden border border-neutral-200 bg-white lg:grid-cols-[0.9fr_1.1fr]"
+                className="grid gap-8 border-t border-neutral-300 pt-10 lg:grid-cols-[0.95fr_1.05fr]"
               >
-                <div className="relative min-h-72 overflow-hidden">
+                <div className="relative min-h-80 overflow-hidden">
                   <Image
                     src={series.image}
                     alt={`${series.name} quartz finishes`}
                     width={1200}
                     height={900}
-                    className="h-full min-h-72 w-full object-cover"
+                    className="h-full min-h-80 w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/55 to-transparent" />
-                  <div className="absolute bottom-5 left-5 right-5 text-white">
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#e8c77f]">
                       {series.products.length} finishes
                     </p>
@@ -95,7 +95,7 @@ export default async function ProductsPage({
                   </div>
                 </div>
 
-                <div className="p-5 md:p-8">
+                <div>
                   <p className="max-w-2xl leading-7 text-neutral-600">{series.buyerValue}</p>
                   <div className="mt-6 divide-y divide-neutral-200">
                     {seriesProducts.map((product) => (
@@ -112,13 +112,13 @@ export default async function ProductsPage({
                         <div className="flex gap-2">
                           <Link
                             href={`/products/${product.id}`}
-                            className="inline-flex h-10 items-center justify-center border border-neutral-300 px-4 text-sm font-semibold text-neutral-950 transition hover:border-neutral-950"
+                            className="inline-flex h-10 items-center justify-center px-1 text-sm font-semibold text-neutral-950 underline-offset-4 transition hover:underline"
                           >
                             Details
                           </Link>
                           <Link
                             href={`/inquiry?product=${product.id}`}
-                            className="inline-flex h-10 items-center justify-center bg-neutral-950 px-4 text-sm font-semibold text-white transition hover:bg-neutral-800"
+                            className="inline-flex h-10 items-center justify-center rounded-full bg-neutral-950 px-4 text-sm font-semibold text-white transition hover:bg-neutral-800"
                           >
                             Quote
                           </Link>
@@ -127,7 +127,7 @@ export default async function ProductsPage({
                     ))}
                   </div>
                 </div>
-              </article>
+              </section>
             );
           })}
         </div>

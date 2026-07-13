@@ -88,8 +88,8 @@ function InquiryForm() {
             </section>
 
             <section className="mx-auto grid max-w-7xl gap-8 px-5 py-12 lg:grid-cols-[0.75fr_1.25fr]">
-                <aside className="space-y-5">
-                    <div className="border border-neutral-200 bg-white p-5">
+                <aside className="space-y-8">
+                    <div className="border-t border-neutral-300 pt-5">
                         <h2 className="text-xl font-semibold text-neutral-950">What helps us reply faster</h2>
                         <ul className="mt-5 space-y-3 text-sm leading-6 text-neutral-600">
                             <li>Product name or quartz series</li>
@@ -98,13 +98,13 @@ function InquiryForm() {
                             <li>Finish, processing, packing, or documentation needs</li>
                         </ul>
                     </div>
-                    <div className="border border-neutral-200 bg-white p-5">
+                    <div className="border-t border-neutral-300 pt-5">
                         <h2 className="text-xl font-semibold text-neutral-950">Available series</h2>
-                        <div className="mt-4 flex flex-wrap gap-2">
+                        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
                             {categories.map((item) => (
                                 <span
                                     key={item.name}
-                                    className="border border-neutral-200 bg-stone-50 px-3 py-2 text-sm font-medium text-neutral-700"
+                                    className="text-sm font-medium text-neutral-700"
                                 >
                                     {item.name}
                                 </span>
@@ -125,7 +125,7 @@ function InquiryForm() {
                     action="/api/inquiry"
                     method="post"
                     onSubmit={handleSubmit}
-                    className="border border-neutral-200 bg-white p-5 md:p-7"
+                    className="border-t border-neutral-300 pt-5"
                 >
                     <div className="grid gap-4 md:grid-cols-2">
                         <Input label="Name" name="name" placeholder="Your name" />
@@ -214,7 +214,7 @@ function Input({
 function InquiryShell() {
     return (
         <main className="mx-auto max-w-7xl px-5 py-12">
-            <div className="rounded-lg border border-stone-200 bg-white p-6">
+            <div className="border-t border-neutral-300 pt-6">
                 <h1 className="text-3xl font-semibold text-neutral-950">Product inquiry</h1>
             </div>
         </main>

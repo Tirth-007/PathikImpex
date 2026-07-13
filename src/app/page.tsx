@@ -54,7 +54,7 @@ export default function Home() {
           </div>
 
           <div className="hidden justify-end lg:flex">
-            <div className="animate-float w-full max-w-sm border border-white/20 bg-white/10 p-5 backdrop-blur-md">
+            <div className="animate-float w-full max-w-sm border-l border-white/25 pl-8">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d6b46d]">
                 Selected finish
               </p>
@@ -62,9 +62,9 @@ export default function Home() {
               <p className="mt-4 leading-7 text-stone-200">
                 A bold surface choice for bars, statement counters, and high-contrast interiors.
               </p>
-              <div className="mt-6 grid grid-cols-2 gap-3 text-sm text-stone-200">
-                <span className="border border-white/15 px-3 py-2">Celestial Series</span>
-                <span className="border border-white/15 px-3 py-2">Private quote</span>
+              <div className="mt-6 flex gap-5 text-sm text-stone-200">
+                <span>Celestial Series</span>
+                <span>Private quote</span>
               </div>
             </div>
           </div>
@@ -83,41 +83,41 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
           <div className="max-w-xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#997332]">
-              Quiet confidence
+              Surface glimpses
             </p>
             <h2 className="mt-4 text-4xl font-medium leading-tight text-neutral-950">
-              Browse less noise. Shortlist better surfaces.
+              A glimpse of the collection, without boxing it in.
             </h2>
             <p className="mt-5 leading-7 text-neutral-600">
-              The site now keeps the public experience intentionally light: series, surface names, visual direction, and a direct path to discuss requirements.
+              The portfolio is shown as an open visual direction: texture, tone, series, and a direct path to ask for the finish that catches attention.
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-10">
             {featuredSeries.map((category) => (
               <Link
                 key={category.name}
                 href={`/products?category=${encodeURIComponent(category.name)}`}
-                className="group bg-white"
+                className="group grid gap-5 md:grid-cols-[0.85fr_1.15fr] md:items-end"
               >
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#997332]">
+                    {category.products.length} finishes
+                  </p>
+                  <h3 className="mt-2 text-3xl font-medium text-neutral-950">{category.name}</h3>
+                  <p className="mt-3 leading-6 text-neutral-600">{category.description}</p>
+                </div>
                 <div className="overflow-hidden">
                   <Image
                     src={category.image}
                     alt={`${category.name} quartz surfaces`}
                     width={1200}
                     height={800}
-                    className="aspect-[5/3] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                    className="aspect-[16/7] w-full object-cover transition duration-700 group-hover:scale-[1.035]"
                   />
-                </div>
-                <div className="border-x border-b border-neutral-200 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#997332]">
-                    {category.products.length} finishes
-                  </p>
-                  <h3 className="mt-2 text-2xl font-medium text-neutral-950">{category.name}</h3>
-                  <p className="mt-3 leading-6 text-neutral-600">{category.description}</p>
                 </div>
               </Link>
             ))}
@@ -156,7 +156,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20">
-        <div className="grid gap-8 border border-neutral-200 bg-white p-6 md:grid-cols-[1fr_auto] md:items-center md:p-10">
+        <div className="grid gap-8 border-t border-neutral-300 pt-10 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#997332]">
               Direct contact

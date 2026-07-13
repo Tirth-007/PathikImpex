@@ -20,20 +20,20 @@ export default function CategoriesPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-12">
-        <div className="grid gap-6">
+        <div className="space-y-16">
           {categories.map((category) => (
-            <article
+            <section
               key={category.name}
-              className="grid overflow-hidden border border-neutral-200 bg-white lg:grid-cols-[0.8fr_1.2fr]"
+              className="grid gap-8 border-t border-neutral-300 pt-10 lg:grid-cols-[0.75fr_1.25fr]"
             >
               <Image
                 src={category.image}
                 alt={`${category.name} quartz series`}
                 width={1200}
                 height={800}
-                className="aspect-[4/3] h-full w-full object-cover"
+                className="aspect-[16/9] h-full w-full object-cover"
               />
-              <div className="flex flex-col justify-center gap-5 p-6 md:p-8">
+              <div className="flex flex-col justify-center gap-5">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
                     {category.name}
@@ -43,14 +43,15 @@ export default function CategoriesPage() {
                   </h2>
                   <p className="mt-4 leading-7 text-neutral-600">{category.buyerValue}</p>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium text-neutral-700">
                   {category.products.map((product) => (
-                    <span
+                    <Link
                       key={product}
-                      className="border border-neutral-200 bg-stone-50 px-3 py-2 text-sm font-medium text-neutral-700"
+                      href={`/products?category=${encodeURIComponent(category.name)}`}
+                      className="underline-offset-4 hover:underline"
                     >
                       {product}
-                    </span>
+                    </Link>
                   ))}
                 </div>
                 <div className="flex flex-wrap gap-3">
@@ -68,7 +69,7 @@ export default function CategoriesPage() {
                   </Link>
                 </div>
               </div>
-            </article>
+            </section>
           ))}
         </div>
       </section>

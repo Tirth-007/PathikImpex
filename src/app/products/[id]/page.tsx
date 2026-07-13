@@ -13,7 +13,7 @@ export default async function ProductDetail({
   if (!product) {
     return (
       <main className="mx-auto max-w-4xl px-5 py-16">
-        <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-red-700">
+        <div className="border-l-2 border-red-500 bg-red-50 p-6 text-red-700">
           Product not found.
         </div>
       </main>
@@ -41,7 +41,7 @@ export default async function ProductDetail({
               </h1>
               <p className="mt-5 text-lg leading-8 text-neutral-600">{product.summary}</p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-6 border-y border-neutral-200 py-5 sm:grid-cols-2">
               <Info label="Availability" value={product.moq} />
               <Info label="Quotation" value={product.quotation} />
             </div>
@@ -84,7 +84,7 @@ export default async function ProductDetail({
 
 function Info({ label, value }: { label: string; value: string }) {
   return (
-    <div className="border border-neutral-200 bg-stone-50 p-4">
+    <div>
       <p className="text-sm font-semibold text-neutral-950">{label}</p>
       <p className="mt-1 text-neutral-600">{value}</p>
     </div>
@@ -93,7 +93,7 @@ function Info({ label, value }: { label: string; value: string }) {
 
 function DetailList({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="border border-neutral-200 bg-white p-5">
+    <div className="border-t border-neutral-300 pt-5">
       <h3 className="font-semibold text-neutral-950">{title}</h3>
       <ul className="mt-4 space-y-3 text-neutral-600">
         {items.map((item) => (
