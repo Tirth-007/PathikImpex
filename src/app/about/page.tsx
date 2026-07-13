@@ -2,37 +2,37 @@ import Image from "next/image";
 import Link from "next/link";
 
 const strengths = [
-  "Clear product communication for first-time and repeat buyers",
-  "Series-wise Advantis Quartz catalog for faster color shortlisting",
-  "Inquiry details structured around quantity, slab needs, finish, packing, and destination",
-  "Email-first follow-up that is simple today and ready for CRM/database growth later",
+  "A focused quartz portfolio without unnecessary public complexity",
+  "Series-wise browsing for faster color shortlisting",
+  "Private follow-up around quantity, slab needs, finish, and timeline",
+  "Clear email communication before any formal quotation",
 ];
 
 export default function AboutPage() {
   return (
     <main>
-      <section className="border-b border-stone-200 bg-white">
+      <section className="border-b border-neutral-200 bg-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
               About Pathik Impex
             </p>
             <h1 className="text-4xl font-semibold leading-tight text-neutral-950 md:text-6xl">
-              A practical sourcing bridge for quartz surface buyers.
+              A quiet surface partner for buyers who value clarity.
             </h1>
             <p className="text-lg leading-8 text-neutral-600">
-              Pathik Impex is presented as a focused import/export partner for buyers who need a direct and professional route to Advantis Quartz surfaces from India. The website is designed to make the first inquiry efficient for both the buyer and the business.
+              Pathik Impex presents a curated Advantis Quartz portfolio for buyers who want to shortlist finishes with confidence and continue sensitive commercial details privately.
             </p>
             <Link
               href="/inquiry"
               className="inline-flex h-12 items-center justify-center rounded-lg bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800"
             >
-              Discuss a Requirement
+              Request a Private Quote
             </Link>
           </div>
           <Image
             src="/advantis/page-14.jpg"
-            alt="Advantis Quartz interior surface brochure visual"
+            alt="Advantis Quartz interior surface visual"
             width={1200}
             height={900}
             className="aspect-[4/3] w-full rounded-lg object-cover"
@@ -46,7 +46,7 @@ export default function AboutPage() {
             Operating approach
           </p>
           <h2 className="mt-2 text-3xl font-semibold text-neutral-950">
-            Built for buyers who compare colors, verify specs, and follow up
+            Built for buyers who compare colors, verify fit, and follow up
           </h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
@@ -60,9 +60,9 @@ export default function AboutPage() {
 
       <section className="border-y border-stone-200 bg-white">
         <div className="mx-auto grid max-w-7xl gap-6 px-5 py-14 md:grid-cols-3">
-          <Metric value="Domestic" label="Indian buyer and project conversations" />
-          <Metric value="International" label="Importer and distributor inquiry handling" />
-          <Metric value="Scalable" label="Email now, database and admin later" />
+          <Metric value="Curated" label="Series-led portfolio for focused shortlisting" />
+          <Metric value="Private" label="Quotation details handled through direct email follow-up" />
+          <Metric value="Responsive" label="Requirements captured clearly before commercial discussion" />
         </div>
       </section>
     </main>

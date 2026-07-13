@@ -2,7 +2,7 @@ const categoryContent = [
   {
     name: "Exclusive Series",
     slug: "exclusive-series",
-    description: "Statement quartz surfaces with premium veining for high-visibility projects.",
+    description: "Statement quartz surfaces with premium veining for high-visibility interiors.",
     buyerValue:
       "For buyers comparing hero countertop, island, vanity, and feature-wall surfaces with a luxury finish.",
     image: "/advantis/page-07.jpg",
@@ -10,7 +10,7 @@ const categoryContent = [
   {
     name: "Luxe Series",
     slug: "luxe-series",
-    description: "Luxury quartz colors with marble-inspired movement and polished project appeal.",
+    description: "Luxury quartz colors with marble-inspired movement and a polished architectural feel.",
     buyerValue:
       "A strong fit for distributors, fabricators, architects, and project buyers seeking refined quartz slabs.",
     image: "/advantis/page-08.jpg",
@@ -20,7 +20,7 @@ const categoryContent = [
     slug: "calacatta-series",
     description: "Calacatta-inspired quartz surfaces spanning gold, grey, white, and dramatic dark designs.",
     buyerValue:
-      "Prepared for premium residential, hospitality, retail, and commercial interiors where surface choice matters.",
+      "Prepared for premium residential, hospitality, retail, and commercial interiors where surface selection matters.",
     image: "/advantis/page-13.jpg",
   },
   {
@@ -44,7 +44,7 @@ const categoryContent = [
     slug: "suave-series",
     description: "Solid and softly grained quartz colors for minimal, work-focused interiors.",
     buyerValue:
-      "A practical range for counters, worktops, offices, retail fixtures, and high-volume specification needs.",
+      "A practical range for counters, worktops, offices, retail fixtures, and specification-led requirements.",
     image: "/advantis/page-23.jpg",
   },
   {
@@ -52,7 +52,7 @@ const categoryContent = [
     slug: "carrara-series",
     description: "Carrara-style quartz designs in classic light and dark stone-inspired looks.",
     buyerValue:
-      "For buyers who want familiar marble aesthetics with the consistency of engineered quartz surfaces.",
+      "For buyers who want familiar marble aesthetics with the consistency of engineered quartz.",
     image: "/advantis/page-24.jpg",
   },
   {
@@ -60,7 +60,7 @@ const categoryContent = [
     slug: "celestial-series",
     description: "Sparkle quartz surfaces for bold counters, bars, vanities, and statement interiors.",
     buyerValue:
-      "Ideal for domestic and international buyers comparing dramatic light, grey, and black sparkle finishes.",
+      "Ideal for buyers comparing dramatic light, grey, and black sparkle finishes for standout spaces.",
     image: "/advantis/page-25.jpg",
   },
 ] as const;
@@ -81,7 +81,7 @@ export type Product = {
   name: string;
   category: ProductCategory;
   moq: string;
-  origin: string;
+  quotation: string;
   summary: string;
   details: string;
   applications: string[];
@@ -177,17 +177,17 @@ export const products: Product[] = productSeeds.map((product) => ({
   id: slugify(product.name),
   name: product.name,
   category: product.category,
-  moq: "Project/order based",
-  origin: "India",
-  summary: `Advantis Quartz ${product.name} is a ${product.tone}, suitable for domestic and international surface inquiries.`,
+  moq: "Shared on request",
+  quotation: "Private follow-up",
+  summary: `${product.name} is a ${product.tone}, selected for refined counters, work surfaces, and interior statements.`,
   details:
-    "For quotation, share required slab size, thickness, finish, quantity, edge/processing requirement, packing expectation, destination country or port, and timeline. Availability and commercial terms can be confirmed during email follow-up.",
+    "For a tailored quotation, share the surface name, preferred size or thickness, finish, quantity, processing expectations, project location, and timeline. Availability, documentation, and commercial terms are confirmed privately during follow-up.",
   applications: applicationsByCategory[product.category],
   specifications: [
     "Material: engineered quartz surface",
     `Series: ${product.category}`,
-    "Finish, thickness, and slab size: confirm while quoting",
-    "Brochure visual included for initial product reference",
+    "Finish, thickness, and slab size: confirmed while quoting",
+    "Project suitability: reviewed during consultation",
   ],
   image: `/advantis/page-${product.page}.jpg`,
 }));

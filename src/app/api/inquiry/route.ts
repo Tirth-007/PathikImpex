@@ -14,7 +14,7 @@ type InquiryPayload = {
 export async function GET() {
   return NextResponse.json(
     {
-      message: "Inquiries are handled through Formspree. Use POST to submit the form.",
+      message: "Use POST to submit an inquiry.",
     },
     { status: 405 }
   );
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       console.error("FORMSPREE_ENDPOINT is not configured.");
 
       return NextResponse.json(
-        { success: false, message: "Formspree is not configured." },
+        { success: false, message: "Inquiry service is not configured." },
         { status: 500 }
       );
     }
@@ -75,10 +75,10 @@ export async function POST(req: Request) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("Formspree submission failed:", errorText);
+      console.error("Inquiry service submission failed:", errorText);
 
       return NextResponse.json(
-        { success: false, message: "Formspree could not accept the inquiry." },
+        { success: false, message: "Inquiry service could not accept the request." },
         { status: 502 }
       );
     }

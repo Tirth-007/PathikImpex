@@ -5,16 +5,16 @@ import { categories } from "@/data/products";
 export default function CategoriesPage() {
   return (
     <main>
-      <section className="border-b border-stone-200 bg-white">
+      <section className="border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-7xl px-5 py-14">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
             Quartz series
           </p>
           <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-tight text-neutral-950 md:text-6xl">
-            Advantis Quartz series buyers can understand quickly.
+            Quartz series made simple to compare.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-            Each series is positioned for importers, distributors, project buyers, designers, and domestic procurement teams who need a clear starting point.
+            Each series gives buyers a clear visual direction before moving into private finish, quantity, and quotation discussions.
           </p>
         </div>
       </section>
@@ -24,7 +24,7 @@ export default function CategoriesPage() {
           {categories.map((category) => (
             <article
               key={category.name}
-              className="grid overflow-hidden rounded-lg border border-stone-200 bg-white lg:grid-cols-[0.8fr_1.2fr]"
+              className="grid overflow-hidden border border-neutral-200 bg-white lg:grid-cols-[0.8fr_1.2fr]"
             >
               <Image
                 src={category.image}
@@ -47,7 +47,7 @@ export default function CategoriesPage() {
                   {category.products.map((product) => (
                     <span
                       key={product}
-                      className="rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-neutral-700"
+                      className="border border-neutral-200 bg-stone-50 px-3 py-2 text-sm font-medium text-neutral-700"
                     >
                       {product}
                     </span>
@@ -56,13 +56,13 @@ export default function CategoriesPage() {
                 <div className="flex flex-wrap gap-3">
                   <Link
                     href={`/products?category=${encodeURIComponent(category.name)}`}
-                    className="inline-flex h-11 items-center justify-center rounded-lg bg-neutral-950 px-5 text-sm font-semibold text-white hover:bg-neutral-800"
+                    className="inline-flex h-11 items-center justify-center rounded-full bg-neutral-950 px-5 text-sm font-semibold text-white hover:bg-neutral-800"
                   >
                     View Products
                   </Link>
                   <Link
                     href={`/inquiry?category=${category.slug}`}
-                    className="inline-flex h-11 items-center justify-center rounded-lg border border-stone-300 px-5 text-sm font-semibold text-neutral-950 hover:bg-stone-100"
+                    className="inline-flex h-11 items-center justify-center rounded-full border border-neutral-300 px-5 text-sm font-semibold text-neutral-950 hover:bg-stone-100"
                   >
                     Ask About {category.name}
                   </Link>

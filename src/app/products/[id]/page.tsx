@@ -22,14 +22,14 @@ export default async function ProductDetail({
 
   return (
     <main>
-      <section className="border-b border-stone-200 bg-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="border-b border-neutral-200 bg-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 lg:grid-cols-[0.95fr_1.05fr]">
           <Image
             src={product.image}
             alt={product.name}
             width={1200}
             height={900}
-            className="aspect-[4/3] h-full w-full rounded-lg object-cover"
+            className="aspect-[4/3] h-full w-full object-cover"
           />
           <div className="flex flex-col justify-center space-y-6">
             <div>
@@ -42,19 +42,19 @@ export default async function ProductDetail({
               <p className="mt-5 text-lg leading-8 text-neutral-600">{product.summary}</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <Info label="MOQ" value={product.moq} />
-              <Info label="Origin" value={product.origin} />
+              <Info label="Availability" value={product.moq} />
+              <Info label="Quotation" value={product.quotation} />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link
                 href={`/inquiry?product=${product.id}`}
-                className="inline-flex h-12 items-center justify-center rounded-lg bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800"
               >
                 Request Quote
               </Link>
               <Link
                 href={`/products?category=${encodeURIComponent(product.category)}`}
-                className="inline-flex h-12 items-center justify-center rounded-lg border border-stone-300 px-6 font-semibold text-neutral-950 hover:bg-stone-100"
+                className="inline-flex h-12 items-center justify-center rounded-full border border-neutral-300 px-6 font-semibold text-neutral-950 hover:bg-stone-100"
               >
                 More in {product.category}
               </Link>
@@ -66,10 +66,10 @@ export default async function ProductDetail({
       <section className="mx-auto grid max-w-7xl gap-8 px-5 py-16 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
-            Buyer note
+            Private consultation
           </p>
           <h2 className="mt-2 text-3xl font-semibold text-neutral-950">
-            What to confirm before quotation
+            What helps the team respond precisely
           </h2>
           <p className="mt-5 leading-7 text-neutral-600">{product.details}</p>
         </div>
@@ -84,7 +84,7 @@ export default async function ProductDetail({
 
 function Info({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+    <div className="border border-neutral-200 bg-stone-50 p-4">
       <p className="text-sm font-semibold text-neutral-950">{label}</p>
       <p className="mt-1 text-neutral-600">{value}</p>
     </div>
@@ -93,11 +93,11 @@ function Info({ label, value }: { label: string; value: string }) {
 
 function DetailList({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="rounded-lg border border-stone-200 bg-white p-5">
+    <div className="border border-neutral-200 bg-white p-5">
       <h3 className="font-semibold text-neutral-950">{title}</h3>
       <ul className="mt-4 space-y-3 text-neutral-600">
         {items.map((item) => (
-          <li key={item}>- {item}</li>
+          <li key={item}>{item}</li>
         ))}
       </ul>
     </div>

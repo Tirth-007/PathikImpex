@@ -73,38 +73,38 @@ function InquiryForm() {
 
     return (
         <main>
-            <section className="border-b border-stone-200 bg-white">
+            <section className="border-b border-neutral-200 bg-white">
                 <div className="mx-auto max-w-7xl px-5 py-14">
                     <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
-                        Product inquiry
+                        Private quotation
                     </p>
                     <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-tight text-neutral-950 md:text-6xl">
-                        Tell us which quartz surface you want to source.
+                        Start a focused surface conversation.
                     </h1>
                     <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-                        Share product name, destination, quantity, slab or finish expectations, packing needs, and timeline. The business receives this through Formspree and can continue the conversation by email.
+                        Share the finish name, quantity, size or thickness expectations, project location, and timeline. The team will respond privately by email.
                     </p>
                 </div>
             </section>
 
             <section className="mx-auto grid max-w-7xl gap-8 px-5 py-12 lg:grid-cols-[0.75fr_1.25fr]">
                 <aside className="space-y-5">
-                    <div className="rounded-lg border border-stone-200 bg-white p-5">
+                    <div className="border border-neutral-200 bg-white p-5">
                         <h2 className="text-xl font-semibold text-neutral-950">What helps us reply faster</h2>
                         <ul className="mt-5 space-y-3 text-sm leading-6 text-neutral-600">
-                            <li>- Product name or quartz series</li>
-                            <li>- Required quantity and slab expectations</li>
-                            <li>- Destination country or port</li>
-                            <li>- Packing, finish, processing, or documentation needs</li>
+                            <li>Product name or quartz series</li>
+                            <li>Required quantity and slab expectations</li>
+                            <li>Project location and timeline</li>
+                            <li>Finish, processing, packing, or documentation needs</li>
                         </ul>
                     </div>
-                    <div className="rounded-lg border border-stone-200 bg-white p-5">
-                        <h2 className="text-xl font-semibold text-neutral-950">Available categories</h2>
+                    <div className="border border-neutral-200 bg-white p-5">
+                        <h2 className="text-xl font-semibold text-neutral-950">Available series</h2>
                         <div className="mt-4 flex flex-wrap gap-2">
                             {categories.map((item) => (
                                 <span
                                     key={item.name}
-                                    className="rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-neutral-700"
+                                    className="border border-neutral-200 bg-stone-50 px-3 py-2 text-sm font-medium text-neutral-700"
                                 >
                                     {item.name}
                                 </span>
@@ -112,11 +112,11 @@ function InquiryForm() {
                         </div>
                     </div>
                     <Image
-                        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80"
-                        alt="Business team reviewing quartz product inquiry"
+                        src="/advantis/page-17.jpg"
+                        alt="Pastel quartz counter surface"
                         width={1000}
                         height={750}
-                        className="aspect-[4/3] w-full rounded-lg object-cover"
+                        className="aspect-[4/3] w-full object-cover"
                     />
                 </aside>
 
@@ -125,7 +125,7 @@ function InquiryForm() {
                     action="/api/inquiry"
                     method="post"
                     onSubmit={handleSubmit}
-                    className="rounded-lg border border-stone-200 bg-white p-5 md:p-7"
+                    className="border border-neutral-200 bg-white p-5 md:p-7"
                 >
                     <div className="grid gap-4 md:grid-cols-2">
                         <Input label="Name" name="name" placeholder="Your name" />
@@ -138,7 +138,7 @@ function InquiryForm() {
                             <select
                                 name="productId"
                                 defaultValue={productId}
-                                className="h-12 w-full rounded-lg border border-stone-300 bg-white px-4 outline-none focus:border-neutral-950"
+                                className="h-12 w-full border border-neutral-300 bg-white px-4 outline-none focus:border-neutral-950"
                             >
                                 <option value="">General or series inquiry</option>
                                 {products.map((product) => (
@@ -155,8 +155,8 @@ function InquiryForm() {
                         <textarea
                             name="message"
                             defaultValue={category ? `Interested in ${category.name}. ` : ""}
-                            placeholder="Quantity, slab size or thickness, finish, packing, destination port, timeline, and any quality requirements"
-                            className="min-h-44 w-full rounded-lg border border-stone-300 p-4 outline-none focus:border-neutral-950"
+                            placeholder="Quantity, slab size or thickness, finish, packing, project location, timeline, and any quality requirements"
+                            className="min-h-44 w-full border border-neutral-300 p-4 outline-none focus:border-neutral-950"
                             required
                         />
                     </label>
@@ -169,14 +169,14 @@ function InquiryForm() {
 
                     {status === "error" && (
                         <p className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
-                            Something went wrong. Please check the Formspree configuration and try again.
+                            Something went wrong. Please try again or share the requirement by email.
                         </p>
                     )}
 
                     <button
                         type="submit"
                         disabled={status === "sending"}
-                        className="mt-5 inline-flex h-12 items-center justify-center rounded-lg bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-500"
+                        className="mt-5 inline-flex h-12 items-center justify-center rounded-full bg-neutral-950 px-6 font-semibold text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-500"
                     >
                         {status === "sending" ? "Sending..." : "Submit Inquiry"}
                     </button>
@@ -204,7 +204,7 @@ function Input({
                 name={name}
                 type={type}
                 placeholder={placeholder}
-                className="h-12 w-full rounded-lg border border-stone-300 px-4 outline-none focus:border-neutral-950"
+                className="h-12 w-full border border-neutral-300 px-4 outline-none focus:border-neutral-950"
                 required={name !== "company"}
             />
         </label>
